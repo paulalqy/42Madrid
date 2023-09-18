@@ -1,39 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: palopez- <palopez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/12 16:54:30 by palopez-          #+#    #+#             */
-/*   Updated: 2023/09/18 18:25:39 by palopez-         ###   ########.fr       */
+/*   Created: 2023/09/18 08:43:38 by palopez-          #+#    #+#             */
+/*   Updated: 2023/09/18 18:27:06 by palopez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdio.h>
+#include <string.h>
 
-int	ft_isdigit(char *str)
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	int	i;
+	size_t	i;
 
+	if (!dst && !src)
+		return (0);
 	i = 0;
-	if (str[i] == '\0')
-		return (1);
-	while (str[i] != '\0')
+	while (i < n)
 	{
-		if (!(str[i] >= '0' && str [i] <= '9'))
-			return (0);
+		((char *)dst)[i] = ((const char *)src)[i];
 		i++;
 	}
-	return (1);
+	return (dst);
 }
 /*int main ()
 {
-	char str[100] = "123855";
-	int resultado;
-	resultado = ft_isdigit(str);
-	printf("%d", resultado);
-	return (0);
+	char dst[20];
+    const char src[] = "Hola, mundo!";
+    size_t n = 5; 
+    ft_memcpy(dst, src, n);
+    printf("destino: %s\n", dst);
+
+    return 0;
 }
 */

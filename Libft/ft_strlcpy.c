@@ -1,39 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: palopez- <palopez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/12 16:54:30 by palopez-          #+#    #+#             */
-/*   Updated: 2023/09/18 18:25:39 by palopez-         ###   ########.fr       */
+/*   Created: 2023/09/16 20:24:50 by palopez-          #+#    #+#             */
+/*   Updated: 2023/09/18 18:45:07 by palopez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdio.h>
 
-int	ft_isdigit(char *str)
+size_t	ft_strlen(const char *s)
 {
-	int	i;
+	size_t	len;
+
+	len = 0;
+	while (s[len])
+		len++;
+	return (len);
+}
+
+size_t	ft_strlcpy(char *dst, const char *src, size_t lend)
+{
+	size_t	i;
 
 	i = 0;
-	if (str[i] == '\0')
-		return (1);
-	while (str[i] != '\0')
+	while (src[i] != '\0' && i < lend - 1)
 	{
-		if (!(str[i] >= '0' && str [i] <= '9'))
-			return (0);
-		i++;
-	}
-	return (1);
+		dst[i] = src[i];
+			i++;
+	}	
+	dst[i] = '\0';
+	return (ft_strlen(src));
 }
-/*int main ()
+
+/*int main()
 {
-	char str[100] = "123855";
-	int resultado;
-	resultado = ft_isdigit(str);
-	printf("%d", resultado);
+	char dst[20];
+
+	printf("%zu\n", ft_strlcpy(dst, "Hello", 4));
+	printf("%s\n", dst);
 	return (0);
-}
-*/
+
+}*/

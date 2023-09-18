@@ -1,39 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: palopez- <palopez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/12 16:54:30 by palopez-          #+#    #+#             */
-/*   Updated: 2023/09/18 18:25:39 by palopez-         ###   ########.fr       */
+/*   Created: 2023/09/18 10:31:09 by palopez-          #+#    #+#             */
+/*   Updated: 2023/09/18 18:43:50 by palopez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdio.h>
+#include <string.h>
 
-int	ft_isdigit(char *str)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	int	i;
+	size_t	n;
 
-	i = 0;
-	if (str[i] == '\0')
-		return (1);
-	while (str[i] != '\0')
+	n = 0;
+	if (!dst && !src)
+		return (0);
+	while (n < len)
 	{
-		if (!(str[i] >= '0' && str [i] <= '9'))
-			return (0);
-		i++;
+		((char *)dst)[n] = ((const char *)src)[n];
+		n++;
 	}
-	return (1);
+	return (dst);
 }
+
 /*int main ()
 {
-	char str[100] = "123855";
-	int resultado;
-	resultado = ft_isdigit(str);
-	printf("%d", resultado);
+	char dst [] = "mi carro se lo llevaron";
+	char src [] = "hola";
+	printf("%s \n", ft_memmove(dst, src, 3));
 	return (0);
 }
 */

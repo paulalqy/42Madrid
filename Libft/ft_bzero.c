@@ -1,39 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: palopez- <palopez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/12 16:54:30 by palopez-          #+#    #+#             */
-/*   Updated: 2023/09/18 18:25:39 by palopez-         ###   ########.fr       */
+/*   Created: 2023/09/16 18:14:41 by palopez-          #+#    #+#             */
+/*   Updated: 2023/09/18 18:20:58 by palopez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdio.h>
+#include <string.h>
 
-int	ft_isdigit(char *str)
+void	ft_bzero(void *s, size_t n)
 {
-	int	i;
+	size_t	i;
 
-	i = 0;
-	if (str[i] == '\0')
-		return (1);
-	while (str[i] != '\0')
+	i = 1;
+	while (i < n)
 	{
-		if (!(str[i] >= '0' && str [i] <= '9'))
-			return (0);
+		((unsigned char *)s)[i] = 0;
 		i++;
 	}
-	return (1);
 }
-/*int main ()
+/*int main()
 {
-	char str[100] = "123855";
-	int resultado;
-	resultado = ft_isdigit(str);
-	printf("%d", resultado);
+	char cadena[4] = {'1', '2', '3', '4'};
+	size_t n = 3;
+	size_t i = 0;
+	
+	ft_bzero(cadena, n);
+	while (i < n + 1)
+	{
+		write(1, &cadena[i], 1);
+		i++;
+	}
+	write(1, "\n", 1);
+	
+	//bzero(cadena, n);
+	//printf ("%c\n", cadena[3]);
 	return (0);
 }
 */
